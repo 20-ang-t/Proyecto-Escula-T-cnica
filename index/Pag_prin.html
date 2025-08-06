@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mágnum Escuela Tecnica</title>
+    <link rel="icon" type="image/png" href="../img/principal/icono.png" />
+    <link rel="stylesheet" href="../style/style_2.css" />
+  </head>
+
+  <body>
+    <div class="sede">
+      <section id="Infodelasede">
+        <h2 class="titulo -seccion">Medellín</h2>
+        <p>Sede Principal</p>
+      </section>
+    </div>
+
+    <div class="Descripción">
+      <section id="InfodeDescripción">
+        <h2 class="titulo">Descripción de Nuestra Sede Principal</h2>
+        <p>
+          En el corazón de la ciudad innovadora, Mágnum combina infraestructura
+          de vanguardia con un modelo educativo práctico que transforma
+          vocaciones en profesiones. Más que aulas, ofrecemos entornos reales de
+          aprendizaje donde cada taller y laboratorio simula los desafíos del
+          mundo laboral actual. Aquí no solo se estudia - se vive la experiencia
+          profesional desde el primer día.
+        </p>
+      </section>
+    </div>
+
+    <div class="medellin">
+      <img src="../img/principal/Medellin.png" class="featured-image" />
+    </div>
+
+    <div class="FunciónPrincipal">
+      <section id="InfodeFunciónPrincipal">
+        <h2 class="titulo">Función Principal</h2>
+        <p>
+          Brindar formación técnica laboral integral, flexible y de calidad,
+          orientada a satisfacer las necesidades del mercado laboral y
+          contribuir al desarrollo económico y social.
+        </p>
+      </section>
+    </div>
+    <div class="ObjetivoGeneral">
+      <section id="InfodeGeneral">
+        <h2 class="titulo">Objetivo General</h2>
+        <p>
+          Formar profesionales técnicos competentes en diversas áreas del
+          conocimiento, mediante programas educativos que integren teoría y
+          práctica, fomentando el emprendimiento y la empleabilidad.
+        </p>
+      </section>
+    </div>
+    <div class="ObjetivoEspecificos">
+      <section id="InfodeEspecificos">
+        <h2 class="titulo">Objetivos Específicos</h2>
+        <ul>
+          <li>
+            Desarrollar programas académicos actualizados y alineados con las
+            demandas del mercado laboral.
+          </li>
+          <li>
+            Establecer alianzas estratégicas con empresas y organizaciones para
+            facilitar la inserción laboral de los egresados.
+          </li>
+          <li>
+            Implementar metodologías pedagógicas innovadoras que favorezcan el
+            aprendizaje significativo.
+          </li>
+          <li>
+            Promover la formación continua y el desarrollo de competencias
+            transversales en los estudiantes.
+          </li>
+        </ul>
+      </section>
+    </div>
+
+    <header>
+      <div class="modificar-container">
+        <button class="modificar-btn">Cambiar Contraseña</button>
+      </div>
+
+      <!-- Modal de cambio de contraseña -->
+      <div class="modal">
+        <div class="modal-content">
+          <span class="close-btn">&times;</span>
+
+          <div class="form-box password">
+            <h2>Modificar Contraseña</h2>
+            <form action="cambio_contraseña.php" method="POST">
+              <div class="input-box">
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="Correo electrónico"
+                  required
+                />
+                <i class="bx bxs-envelope"></i>
+              </div>
+              <div class="input-box">
+                <input
+                  type="password"
+                  name="password_actual"
+                  placeholder="Contraseña actual"
+                  required
+                />
+                <i class="bx bxs-lock-alt"></i>
+              </div>
+              <div class="input-box">
+                <input
+                  type="password"
+                  name="password_nueva"
+                  placeholder="Nueva contraseña"
+                  required
+                />
+                <i class="bx bxs-lock-alt"></i>
+              </div>
+              <button type="submit" name="update_password" class="btn">
+                Actualizar
+              </button>
+
+              <div class="modal-footer">
+                <p>
+                  &copy;2025 Angel_Torres. Todos Los Derechos Reservados.
+                  <a href="../index/contactanos.html"
+                    >Políticas de Privacidad</a
+                  >
+                </p>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <h2 class="Mágnum">Mágnum</h2>
+      <nav class="navigation">
+        <div class="select-menu">
+          <div class="select-btn" id="select-btn">
+            <span id="text">Escuelas</span>
+            <ion-icon name="chevron-down-outline" class="icon-arrow"></ion-icon>
+          </div>
+
+          <ul class="list">
+            <li class="option" style="--i: 8">
+              <a href="../index/EscuelaAdministracion.html" class="option-link">
+                <ion-icon name="school-outline" class="icon"></ion-icon>
+                <span class="option-text">Escuela de Administración</span>
+              </a>
+            </li>
+            <li class="option" style="--i: 7">
+              <a
+                href="../index/EscuelaBellezaIntegral.html"
+                class="option-link"
+              >
+                <ion-icon name="school-outline" class="icon"></ion-icon>
+                <span class="option-text">Escuela de Belleza Integral</span>
+              </a>
+            </li>
+            <li class="option" style="--i: 6">
+              <a href="../index/EscuelaEducacion.html" class="option-link">
+                <ion-icon name="school-outline" class="icon"></ion-icon>
+                <span class="option-text">Escuela de Educación</span>
+              </a>
+            </li>
+            <li class="option" style="--i: 5">
+              <a href="../index/EscuelaGastronimia.html" class="option-link">
+                <ion-icon name="school-outline" class="icon"></ion-icon>
+                <span class="option-text">Escuela de Gastronomía</span>
+              </a>
+            </li>
+            <li class="option" style="--i: 4">
+              <a href="../index/EscuelaIdiomas.html" class="option-link">
+                <ion-icon name="school-outline" class="icon"></ion-icon>
+                <span class="option-text">Escuela de Idiomas</span>
+              </a>
+            </li>
+
+            <li class="option" style="--i: 3">
+              <a href="../index/EscuelaMercadeo.html" class="option-link">
+                <ion-icon name="school-outline" class="icon"></ion-icon>
+                <span class="option-text">Escuela de Mercadeo</span>
+              </a>
+            </li>
+            <li class="option" style="--i: 2">
+              <a href="../index/EscuelaSalud.html" class="option-link">
+                <ion-icon name="school-outline" class="icon"></ion-icon>
+                <span class="option-text">Escuela de Salud</span>
+              </a>
+            </li>
+            <li class="option" style="--i: 1">
+              <a href="../index/EscuelaTIC.html" class="option-link">
+                <ion-icon name="school-outline" class="icon"></ion-icon>
+                <span class="option-text">Escuela de TIC</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+
+    <!-- GALERÍA MEJORADA CON ETIQUETAS -->
+    <div class="galeria-container">
+      <div class="galeria">
+        <div class="galeria-item">
+          <img
+            src="../img/principal/computo.png"
+            alt="Fachada"
+            class="galeria-img"
+          />
+        </div>
+        <div class="galeria-item">
+          <img
+            src="../img/escuela de idiomas/escuela idioma 4.PNG"
+            alt="Consultorio"
+            class="galeria-img"
+          />
+        </div>
+        <div class="galeria-item">
+          <img
+            src="../img/escuela de gastronomia/escuela de gastronomia 2.jpeg"
+            alt="Paneles Solares"
+            class="galeria-img"
+          />
+        </div>
+        <div class="galeria-item">
+          <img
+            src="../img/escuela de salud/escuela salud 5.PNG"
+            alt="Sala de Computadores"
+            class="galeria-img"
+          />
+        </div>
+      </div>
+    </div>
+
+    <!-- Ubicación con mapa -->
+    <div class="ubicacion">
+      <section id="InfoUbicacion">
+        <h2 class="titulo">Ubicación</h2>
+        <p>Dirección: Calle 45A # 78-56, Medellín, Antioquia</p>
+        <div class="mapa-container">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.521260322283!2d-75.57268268523152!3d6.201505595501325!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e468280f8e80c6d%3A0x1a749c1a4a7e8d1a!2sPlaza%20Botero!5e0!3m2!1ses!2sco!4v1620000000000!5m2!1ses!2sco"
+            width="100%"
+            height="400"
+            style="border: 0"
+            allowfullscreen=""
+            loading="lazy"
+          >
+          </iframe>
+        </div>
+      </section>
+    </div>
+
+    <footer class="footer">
+      <div class="footer-content">
+        <!-- Columna 1: Aliados -->
+        <div class="footer-column">
+          <h3 class="footer-title">Aliados</h3>
+          <ul class="footer-list">
+            <li class="footer-item">Academia Técnica de Wakanda del Sur</li>
+            <li class="footer-item">
+              Instituto Superior de Ingeniería de Hogsmeade
+            </li>
+            <li class="footer-item">Corporación Educativa Stark & Wayne</li>
+          </ul>
+        </div>
+
+        <!-- Columna 2: Web -->
+        <div class="footer-column">
+          <h3 class="footer-title">Web</h3>
+          <ul class="footer-list">
+            <li class="footer-item"><a href="#">Términos y Condiciones</a></li>
+            <li class="footer-item">
+              <a href="#">Políticas de tratamiento de datos</a>
+            </li>
+            <li class="footer-item"><a href="#">Políticas de cookies</a></li>
+            <li class="footer-item"><a href="#">Sala de prensa</a></li>
+          </ul>
+        </div>
+
+        <!-- Columna 3: Públicos -->
+        <div class="footer-column">
+          <h3 class="footer-title">Públicos</h3>
+          <ul class="footer-list">
+            <li class="footer-item">Aspirante</li>
+            <li class="footer-item">Estudiantes</li>
+            <li class="footer-item">Egresados</li>
+            <li class="footer-item">Empresas</li>
+            <li class="footer-item">
+              <a href="#">Términos Cursos y Diplomados</a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Columna 4: Branding -->
+        <div class="footer-branding">
+          <h2 class="footer-logo">MÁGNUM</h2>
+          <p class="footer-text">&copy; 2025 Mágnum Escuela Técnica</p>
+          <p class="footer-text">Todos los derechos reservados</p>
+          <p class="footer-text">Medellín - Colombia - Suramérica</p>
+          <p class="footer-text">
+            Diseño y desarrollo: Trabajo académico realizado por Miguel Ángel
+            García Torres
+          </p>
+          <p class="footer-text">
+            Hecho con pasión <span class="heart">❤️</span>
+          </p>
+        </div>
+      </div>
+
+      <!-- Barra inferior -->
+      <div class="footer-bottom">
+        <p>Mágnum Escuela Técnica - Educación de calidad para el futuro</p>
+      </div>
+    </footer>
+
+    <!-- WhatsApp Float -->
+    <a href="https://wa.me/573000000001" class="whatsapp-float" target="_blank">
+      <img src="../img/principal/whatsapp.png" alt="WhatsApp" />
+    </a>
+
+    <script src="../script/script_2.js"></script>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+    ></script>
+  </body>
+</html>

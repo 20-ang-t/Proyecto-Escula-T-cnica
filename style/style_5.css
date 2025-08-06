@@ -1,0 +1,410 @@
+/* Reset básico y estilos generales */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Times New Roman", serif;
+}
+
+/* Estructura principal del body */
+body {
+  position: relative;
+  min-height: 100vh;
+  background-color: rgb(214, 219, 216);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  padding-top: 100px; /* Espacio para el header fijo */
+}
+
+/* Estilo del header - Barra superior */
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 25px 150px;
+  background-color: rgb(41, 42, 40);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 99;
+  color: #ffffff;
+  height: 80px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+.inscripción {
+  margin: 50px auto 0 auto; /* Top, auto a los lados para centrar horizontalmente */
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  background: rgba(255, 255, 255, 0.8);
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 281px;
+}
+
+/* Estilo del logo/título */
+.magnum {
+  font-size: 2.2em;
+  color: #ffffff;
+  user-select: none;
+  margin-left: 20px;
+  letter-spacing: 1px;
+}
+
+.escuela-elegante {
+  background: linear-gradient(135deg, #f9f9f9 0%, #ffffff 100%);
+  padding: 40px;
+  border-radius: 12px;
+  display: flex;
+  gap: 40px;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.escuela-elegante::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 30%;
+  height: 100%;
+  background: linear-gradient(
+    to left,
+    rgba(255, 215, 0, 0.03) 0%,
+    transparent 100%
+  );
+}
+
+.contenido-texto {
+  flex: 1;
+  z-index: 2;
+}
+
+.titulo-destacado {
+  color: #2a2a2a;
+  font-size: 2rem;
+  margin-bottom: 20px;
+  font-weight: 300;
+  letter-spacing: 1px;
+  position: relative;
+  display: inline-block;
+}
+
+.titulo-destacado::after {
+  content: "";
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 70px;
+  height: 2px;
+  background: linear-gradient(to right, #d4af37, #f0e5c1);
+}
+
+.descripcion-lujosa {
+  color: #555;
+  line-height: 1.8;
+  font-size: 1.1rem;
+  margin-bottom: 0;
+  font-weight: 300;
+  letter-spacing: 0.3px;
+}
+
+.contenedor-imagen {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.imagen-refinada {
+  width: 280px;
+  border-radius: 6px;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  position: relative;
+  z-index: 1;
+}
+
+.decoracion-oro {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 2px solid rgba(212, 175, 55, 0.3);
+  border-radius: 8px;
+  top: 15px;
+  left: 15px;
+  z-index: 0;
+}
+
+@media (max-width: 768px) {
+  .escuela-elegante {
+    flex-direction: column;
+    padding: 30px;
+  }
+
+  .contenedor-imagen {
+    margin-top: 30px;
+  }
+}
+
+/* Estilos de navegación */
+.navigation a {
+  text-decoration: none;
+  color: #ffffff;
+  padding: 10px 20px;
+  border-radius: 4px;
+  transition: all 0.3s;
+  background-color: rgba(255, 255, 255, 0.1);
+  font-size: 1.1em;
+  margin-right: 20px;
+}
+
+.navigation a:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+/* Contenedor principal de categorías */
+.categorias-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 25px;
+  padding: 30px;
+  max-width: 1300px;
+  margin: 0 auto;
+  width: 90%;
+}
+
+/* Estilo de cada tarjeta de categoría */
+.categorias {
+  background-color: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  position: relative;
+  border: 1px solid #eee;
+}
+
+/* Estilo de las imágenes */
+.categorias img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  transition: all 0.3s;
+}
+
+/* Barra inferior decorativa al hacer hover */
+.categorias::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 198px;
+  background-color: #4a4a4a;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+
+.categorias:hover::after {
+  transform: scaleX(1);
+}
+
+/* Contenedor de información del programa */
+.programa-info {
+  padding: 20px;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+/* Estilo de los títulos */
+.categorias a {
+  display: block;
+  padding: 10px;
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+  font-size: 1.1em;
+  transition: color 0.3s;
+  line-height: 1.4;
+}
+
+.categorias:hover a {
+  color: #333; /* Mantiene el mismo color en hover */
+}
+
+/* CAMBIO 1: Color del título al hacer hover */
+.categorias:hover .programa-info > a:first-child {
+  color: #ffffff; /* Cambia a Blanco */
+}
+/* Estilos para el botón "Inscríbete" */
+.inscribete-btn {
+  display: inline-block;
+  margin-top: 15px;
+  padding: 10px 20px;
+  background-color: #797b7e;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: 600;
+  font-size: 1em;
+  transition: all 0.3s;
+  opacity: 0.9; /* Visible por defecto */
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.categorias:hover .inscribete-btn {
+  opacity: 1;
+  background-color: #ffffff;
+}
+
+.inscribete-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.aliados-section {
+  margin: 80px 0; /* Esta línea agrega espacio ARRIBA y ABAJO */
+  text-align: center;
+}
+
+.aliados-section h2 {
+  font-size: 28px;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.carousel-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  width: 100%;
+  max-width: 1000px;
+  margin: auto;
+  justify-content: center; /* Centra las imágenes horizontalmente */
+  padding: 30px; /* Espacio interno del contenedor */
+  flex-wrap: wrap; /* Permite que las imágenes pasen a otra línea si no caben */
+}
+
+.carousel {
+  display: flex;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+}
+
+.carousel::-webkit-scrollbar {
+  display: none;
+}
+
+.carousel img {
+  width: 100px;
+  height: 100%;
+  margin: 5px;
+  border-radius: 10px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+/* ESTILOS PARA EL FOOTER */
+.footer {
+  background-color: #2c3e50;
+  color: #ecf0f1;
+  padding: 40px 0 0 0;
+  margin-top: 40px;
+  width: 100%;
+}
+
+.footer-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.footer-column {
+  flex: 1;
+  min-width: 200px;
+  margin-bottom: 30px;
+  padding: 0 15px;
+}
+
+.footer-title {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+  color: #f1c40f;
+  position: relative;
+  padding-bottom: 10px;
+}
+
+.footer-title::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 50px;
+  height: 2px;
+  background-color: #f1c40f;
+}
+
+.footer-list {
+  list-style: none;
+}
+
+.footer-item {
+  margin-bottom: 10px;
+  line-height: 1.6;
+}
+
+.footer-item a {
+  color: #bdc3c7;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.footer-item a:hover {
+  color: #f1c40f;
+}
+
+.footer-branding {
+  flex: 1;
+  min-width: 250px;
+  text-align: center;
+  padding: 0 15px;
+}
+
+.footer-logo {
+  font-size: 2rem;
+  margin-bottom: 15px;
+  color: #f1c40f;
+}
+
+.footer-text {
+  margin-bottom: 8px;
+  line-height: 1.6;
+}
+
+.heart {
+  color: #e74c3c;
+}
+
+.footer-bottom {
+  background-color: #1a252f;
+  padding: 15px 0;
+  text-align: center;
+  font-size: 0.9rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}

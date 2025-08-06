@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Inscripción Técnicos Laborales - Mágnum</title>
+    <link rel="icon" type="image/png" href="../img/principal/icono.png" />
+    <link rel="stylesheet" href="../style/style.css" />
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="left-panel">
+        <img
+          src="../img/principal/inscripción.png"
+          alt="Preinscripción"
+          class="imagen-formulario"
+        />
+
+        <!-- Información flotante -->
+        <div id="programa-info" class="programa-info-container">
+          <h3 id="programa-titulo"></h3>
+          <p id="programa-descripcion"></p>
+        </div>
+
+        <footer>
+          &copy; Mágnum Escuela Técnica - Educación de calidad para el futuro
+        </footer>
+      </div>
+
+      <div class="right-panel">
+        <h2>Preinscripción</h2>
+        <p><strong>Por favor diligencia toda la información</strong></p>
+
+        <form id="form" action="inscripción.php" method="POST" onsubmit="return enviarFormulario(event)">
+          <label for="nombre">Nombre:</label>
+          <input
+            type="text"
+            name="nombre"
+            placeholder="Nombre Completo"
+            required
+          />
+
+          <label for="programa">Programa:</label>
+          <input
+            type="text"
+            id="programa-seleccionado"
+            name="programa"
+            readonly
+            required
+          />
+
+          <!-- En el formulario de inscripción, modifica el campo de correo así: -->
+          <label for="correo">Correo:</label>
+          <input
+            type="email"
+            name="correo"
+            id="correoInscripcion"
+            placeholder="Correo Electrónico"
+            required
+          />
+
+          <script>
+            // Al cargar la página, verificar si hay un correo guardado
+            document.addEventListener("DOMContentLoaded", function () {
+              const correoGuardado = localStorage.getItem("correoRegistrado");
+              if (correoGuardado) {
+                document.getElementById("correoInscripcion").value =
+                  correoGuardado;
+                /* Opcional: limpiar el localStorage después de usarlo 
+                 localStorage.removeItem('correoRegistrado'); */
+              }
+            });
+          </script>
+
+          <label for="jornada">Jornadas:</label>
+          <select name="jornada" required>
+            <option value="">Jornada</option>
+            <option value="Mañana">Mañana</option>
+            <option value="Tarde">Tarde</option>
+            <option value="Noche">Noche</option>
+          </select>
+
+          <label for="celular">Celular:</label>
+          <input
+            type="text"
+            name="celular"
+            placeholder="Teléfono / Celular"
+            required
+          />
+
+          <label for="documento">Documento:</label>
+          <input
+            type="text"
+            name="documento"
+            placeholder="Número de documento"
+            required
+          />
+
+          <form
+            action="inscripción.php"
+            method="POST"
+            onsubmit="return validarFormulario()"
+          >
+            <!-- Campos del formulario... -->
+
+            <div class="checkbox-container">
+              <input
+                type="checkbox"
+                name="terminos"
+                id="terminosCheckbox"
+                required
+              />
+              <label for="terminosCheckbox">
+                Por favor acepta los
+                <a href="contactanos.html">términos y condiciones</a>
+              </label>
+            </div>
+            <script>
+              const checkbox = document.getElementById("termsCheckbox");
+              const button = document.getElementById("registerBtn");
+
+              checkbox.addEventListener("change", () => {
+                button.disabled = !checkbox.checked;
+              });
+            </script>
+          <input type="submit" id="button" value="Inscribete" />
+            <style>
+              form input[type="submit"] {
+                grid-column: span 2;
+                padding: 12px;
+                background-color: black;
+                color: white;
+                font-weight: bold;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+              }
+            </style>
+          </form>
+        </form>
+      </div>
+        <script
+          type="text/javascript"
+          src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"
+        ></script>
+
+        <script type="text/javascript">
+          emailjs.init("aySa818e1FIkkADp7");
+        </script>
+
+        <script>
+          // Validación del formulario antes de enviar
+          function validarFormulario() {
+            const terminos =
+              document.getElementById("terminosCheckbox").checked;
+            if (!terminos) {
+              alert("Debes aceptar los términos y condiciones");
+              return false;
+            }
+            return true;
+          }
+
+          // Cargar correo desde localStorage
+          document.addEventListener("DOMContentLoaded", function () {
+            const correoGuardado = localStorage.getItem("correoRegistrado");
+            if (correoGuardado) {
+              document.getElementById("correoInscripcion").value =
+                correoGuardado;
+            }
+          });
+        </script>
+      </div>
+    </div>
+
+    <script src="../script/script4.js"></script>
+    <script>
+      // Obtener parámetros de la URL
+      const urlParams = new URLSearchParams(window.location.search);
+      const programaParam = urlParams.get("programa");
+
+      const programas = {
+        "Técnico Laboral en Auxiliar Administrativo en Documentación": {
+          descripcion:
+            "Este programa está diseñado para formar técnicos laborales con una sólida comprensión de los procesos administrativos relacionados con la gestión documental. El estudiante adquirirá habilidades para organizar, clasificar, conservar y tramitar documentos físicos y digitales, apoyándose en normativas legales vigentes, herramientas informáticas y sistemas de información geográfica (SIG). Los egresados estarán capacitados para desempeñarse en entidades públicas o privadas, especialmente en áreas catastrales, archivos institucionales y centros de documentación, aportando al manejo eficiente y seguro de la información organizacional.",
+        },
+        "Técnico Laboral en Asistente Legal y Jurídico": {
+          descripcion:
+            "Este programa está orientado a brindar a los estudiantes una formación integral en fundamentos del derecho, ética profesional y procedimientos legales. Los participantes desarrollarán competencias para apoyar eficazmente a abogados y equipos jurídicos en labores administrativas, redacción de documentos legales, manejo de archivos jurídicos y atención al usuario en entidades públicas o privadas. El egresado será un recurso clave para el funcionamiento operativo de bufetes, notarías, juzgados y áreas legales de empresas, con un enfoque en responsabilidad y confidencialidad.",
+        },
+        "Técnico Laboral en Auxiliar de Comercio Exterior": {
+          descripcion:
+            "El programa de Auxiliar de Comercio Exterior forma profesionales con conocimientos teóricos y prácticos en procesos de importación, exportación, logística internacional y normativa aduanera. Los estudiantes desarrollarán habilidades para asistir operaciones comerciales internacionales, gestionar documentación y utilizar plataformas tecnológicas propias del sector. Esta formación les permitirá vincularse a empresas exportadoras e importadoras, agencias aduaneras, zonas francas y operadores logísticos, contribuyendo a la dinamización de los negocios globales.",
+        },
+        "Técnico Laboral en Auxiliar de Banca y Finanzas": {
+          descripcion:
+            "Este programa capacita a los estudiantes para desempeñar funciones de apoyo en entidades del sector financiero, tales como bancos, cooperativas, aseguradoras y compañías de financiamiento. A través de una formación práctica y contextualizada, el estudiante aprenderá sobre productos y servicios financieros, análisis crediticio, servicio al cliente, gestión de operaciones y manejo de herramientas informáticas bancarias. El egresado estará preparado para facilitar la atención y orientación al usuario en procesos financieros, con altos estándares éticos y de servicio.",
+        },
+        "Técnico Laboral en Auxiliar de Archivo": {
+          descripcion:
+            "Forma técnicos competentes en la organización, administración y conservación de archivos, tanto físicos como digitales, bajo normativas archivísticas nacionales e internacionales. Los estudiantes adquirirán habilidades en el uso de herramientas tecnológicas, procesos de digitalización y clasificación documental, lo que les permitirá asegurar el acceso, integridad y trazabilidad de la información institucional. El egresado podrá desempeñarse en bibliotecas, centros de documentación, oficinas públicas y privadas, contribuyendo a la eficiencia en la gestión del conocimiento organizacional.",
+        },
+        "Técnico Laboral en Secretariado Bilingüe Nivel B1": {
+          descripcion:
+            "Este programa forma profesionales en gestión administrativa con un enfoque en el manejo del idioma inglés a nivel intermedio (B1 según el MCER). El estudiante desarrollará competencias para realizar labores secretariales, atención al cliente, redacción de documentos y manejo de agendas corporativas, con la capacidad de comunicarse efectivamente en entornos empresariales internacionales. Los egresados estarán preparados para trabajar en compañías multinacionales, empresas de turismo, comercio exterior y servicios corporativos, siendo un enlace clave en contextos multilingües.",
+        },
+        "Técnico Laboral en Secretariado Contable Financiero": {
+          descripcion:
+            "Este programa combina la formación en funciones secretariales con conocimientos fundamentales de contabilidad y finanzas. Los estudiantes aprenderán a manejar herramientas ofimáticas, gestionar documentación contable, elaborar informes financieros y brindar soporte administrativo a las áreas de contabilidad, tesorería y presupuesto. Esta formación permite al egresado integrarse eficazmente en equipos administrativos, optimizando los procesos internos de pequeñas y medianas empresas, entidades educativas, de salud y organizaciones del sector público o privado.",
+        },
+        "Técnico Laboral en Secretariado Gerencial": {
+          descripcion:
+            "Este programa prepara al estudiante para asumir funciones de asistencia directa a la alta dirección en organizaciones públicas y privadas. La formación se enfoca en el desarrollo de habilidades para gestionar agendas ejecutivas, coordinar reuniones, redactar comunicaciones empresariales, manejar herramientas tecnológicas y liderar procesos administrativos. Además, se promueve el pensamiento estratégico, la confidencialidad y la proactividad. El egresado será un colaborador clave para la gestión gerencial, con capacidades para tomar decisiones en contextos corporativos exigentes.",
+        },
+        "Técnico Laboral en Auxiliar de Costos y Presupuestos": {
+          descripcion:
+            "Diseñado para formar técnicos con competencias en la planeación, análisis y control de los costos operativos y financieros en organizaciones de diversos sectores. El estudiante adquirirá conocimientos en contabilidad de costos, elaboración de presupuestos, control de gastos, uso de software contable y presentación de informes financieros. Esta formación le permitirá apoyar a las áreas contables y financieras en la toma de decisiones estratégicas, fomentando una gestión económica eficiente y sostenible.",
+        },
+        "Técnico Laboral en Auxiliar de Recursos Humanos": {
+          descripcion:
+            "Este programa brinda formación integral en los procesos clave de la gestión del talento humano: reclutamiento, selección, capacitación, bienestar laboral, nómina y relaciones laborales. Los estudiantes adquirirán herramientas para aplicar procedimientos de vinculación y desvinculación, gestionar bases de datos de personal y apoyar programas de desarrollo organizacional. El egresado podrá desempeñarse en empresas de cualquier sector, como soporte al área de gestión humana, con una visión ética, organizacional y orientada al bienestar del trabajador.",
+        },
+        "Técnico Laboral en Procedimientos Contables": {
+          descripcion:
+            "Este programa desarrolla habilidades para registrar, clasificar y analizar operaciones financieras básicas de una empresa. Los estudiantes aprenderán a manejar software contable, elaborar comprobantes de contabilidad, realizar conciliaciones bancarias y preparar informes contables. Esta formación permitirá al egresado desempeñarse como apoyo en oficinas contables, firmas de auditoría, departamentos financieros y pymes, contribuyendo a la transparencia y orden financiero de la organización.",
+        },
+        "Técnico Laboral en Procedimientos Administrativos": {
+          descripcion:
+            "El programa está enfocado en formar técnicos con habilidades operativas y administrativas para el adecuado funcionamiento de oficinas. Se capacita al estudiante en atención al cliente, gestión documental, archivo, manejo de correspondencia, redacción comercial y utilización de herramientas ofimáticas. El egresado estará en capacidad de apoyar los procesos administrativos básicos de cualquier organización, siendo un colaborador versátil, organizado y orientado al cumplimiento de metas institucionales.",
+        },
+        "Técnico laboral en Cuidado Estético de Manos y Pies": {
+          descripcion:
+            "Este programa está orientado a formar técnicos altamente capacitados en el embellecimiento y cuidado integral de manos y pies. Los estudiantes adquieren conocimientos teóricos y prácticos en higiene, anatomía, técnicas de manicura y pedicura básica y avanzada, aplicación de esmaltes, sistemas de uñas (gel, acrílicas, semipermanentes), y prevención de patologías dérmicas comunes. Además, se promueve el desarrollo de competencias en bioseguridad, atención al cliente, emprendimiento y manejo de herramientas tecnológicas del sector estético.",
+        },
+        "Técnico Laboral en Barbería": {
+          descripcion:
+            "Este programa ofrece una formación integral para desarrollar habilidades técnicas, artísticas y comerciales en el ámbito de la barbería profesional. El estudiante aprenderá técnicas de corte clásico y moderno, afeitado tradicional, diseño de barba y cejas, tratamientos capilares masculinos, colorimetría, y uso adecuado de herramientas especializadas. Además, se abordan temas como la atención personalizada, bioseguridad, tendencias en imagen masculina y gestión de negocios. El egresado estará en capacidad de desempeñarse como barbero profesional en barberías.",
+        },
+        "Técnico Laboral en Asesoría de Imagen": {
+          descripcion:
+            "Este programa está diseñado para formar profesionales en el análisis, diseño y proyección de la imagen personal y profesional de individuos. Los estudiantes desarrollarán competencias en morfología corporal y facial, visagismo, colorimetría, protocolo social y empresarial, estilismo, maquillaje, vestuario y comunicación no verbal. La formación incluye herramientas para identificar las fortalezas de imagen del cliente y proponer estrategias para potenciar su presentación personal en contextos sociales, laborales o públicos.",
+        },
+        "Técnico Laboral en Peeling químico": {
+          descripcion:
+            "Este programa especializado forma técnicos en la aplicación segura y profesional de tratamientos de exfoliación química en la piel, conocidos como peelings. A lo largo de la formación, el estudiante aprenderá sobre los tipos de ácidos, concentraciones, protocolos de aplicación, indicaciones y contraindicaciones, así como el manejo de diferentes tipos de piel y patologías dermatológicas leves. También se abordarán temas de bioseguridad, ética profesional, normatividad vigente en procedimientos estéticos no invasivos y atención al cliente.",
+        },
+        "Técnico Laboral como Instructor en Entrenamiento Deportivo y Recreación":
+          {
+            descripcion:
+              "Este programa forma técnicos laborales con competencias para diseñar, ejecutar y supervisar planes de entrenamiento físico y actividades recreativas en poblaciones de diferentes edades. El estudiante desarrollará conocimientos en anatomía, fisiología del ejercicio, nutrición deportiva, planificación del entrenamiento, primeros auxilios, y técnicas de liderazgo y motivación. Asimismo, se enfatiza el desarrollo de habilidades para promover hábitos saludables y estilos de vida activos a través de actividades deportivas, lúdicas y recreativas.",
+          },
+        "Técnico Laboral en Atención Integral a la Primera Infancia": {
+          descripcion:
+            "Este programa está enfocado en formar profesionales que apoyen el desarrollo integral de niños y niñas en la primera infancia, desde una perspectiva pedagógica, afectiva y social. El estudiante aprenderá sobre desarrollo infantil, nutrición, salud, planeación de actividades pedagógicas, juego como herramienta educativa, normativas de protección a la infancia, y trabajo con familias y comunidades. Además, se promoverán habilidades de comunicación, empatía y observación. El egresado estará en capacidad de trabajar en hogares infantiles, jardines, fundaciones.",
+        },
+        "Técnico Laboral en Auxiliar de Preescolar": {
+          descripcion:
+            "Este programa capacita a los estudiantes para apoyar al docente en el proceso educativo de los niños en edad preescolar, fortaleciendo su desarrollo cognitivo, emocional, motriz y social. Se abordan temáticas como fundamentos de pedagogía infantil, didácticas del juego, expresión corporal, literatura infantil, ambientes seguros, atención individualizada y trabajo en equipo pedagógico. El egresado podrá asistir en actividades escolares, talleres lúdicos, cuidado personal de los menores y en la elaboración de materiales educativos, contribuyendo activamente a la formación de niños entre los 3 y 6 años en jardines infantiles.",
+        },
+        "Técnico Laboral en Terapia Ocupacional Infantil": {
+          descripcion:
+            "Este programa está diseñado para formar técnicos que apoyen los procesos terapéuticos de niños con necesidades especiales, retrasos en el desarrollo o discapacidades, promoviendo su autonomía e integración en contextos familiares, educativos y sociales. El estudiante recibirá formación en neurodesarrollo, estimulación sensorial, habilidades motrices finas y gruesas, técnicas de intervención lúdica, adaptación de espacios, y estrategias de acompañamiento a las familias. Se enfatiza el trabajo interdisciplinario y la ética profesional en contextos de atención especializada. ",
+        },
+        "Técnico Laboral Auxiliar en Cocina": {
+          descripcion:
+            "Este programa forma técnicos con habilidades prácticas en la preparación de alimentos, técnicas culinarias y buenas prácticas de manipulación. Los estudiantes adquieren conocimientos en cocina nacional e internacional, higiene y seguridad alimentaria, conservación de alimentos, manejo de equipos de cocina y presentación de platos. Se promueve el desarrollo de creatividad culinaria, organización y trabajo en equipo. El egresado estará capacitado para desempeñarse como auxiliar de cocina en restaurantes, hoteles, comedores industriales, instituciones educativas, o emprender su propio negocio gastronómico con estándares de calidad y eficiencia.",
+        },
+
+        "Técnico Laboral Auxiliar en Panadería y Pastelería": {
+          descripcion:
+            "Este programa está orientado a formar técnicos expertos en la elaboración de productos de panadería, pastelería y repostería, combinando técnicas tradicionales y modernas. El estudiante aprenderá sobre fermentación, amasado, decoración de tortas, preparación de masas dulces y saladas, normas de higiene, control de calidad y costos de producción. Además, se desarrollarán competencias en creatividad, precisión y atención al detalle. El egresado podrá trabajar en panaderías, pastelerías, cafeterías, hoteles, o iniciar su propio emprendimiento, cumpliendo con los estándares del sector alimentario.",
+        },
+
+        "Técnico Laboral en Bartender": {
+          descripcion:
+            "El programa de Bartender está diseñado para formar profesionales competentes en la preparación, presentación y servicio de bebidas alcohólicas y no alcohólicas, con un enfoque en la hospitalidad y la experiencia del cliente. Se estudian técnicas de mixología, coctelería clásica y moderna, servicio de barra, maridaje, control de inventario y normativas sobre consumo responsable. También se fortalecen habilidades en comunicación, agilidad, manejo del estrés y atención personalizada. El egresado podrá desempeñarse en bares, discotecas, hoteles, cruceros o eventos especiales.",
+        },
+
+        "Técnico Laboral en Operador de Eventos": {
+          descripcion:
+            "Este programa capacita en la planeación, logística y ejecución de eventos sociales, empresariales y culturales. El estudiante desarrollará habilidades en organización de bodas, congresos, ferias, lanzamientos de productos, entre otros, aprendiendo sobre protocolo, atención al cliente, manejo de proveedores, decoración, catering y gestión presupuestal. Se enfoca también en el desarrollo de la creatividad, la capacidad de adaptación y la resolución de imprevistos. El egresado estará preparado para trabajar en empresas organizadoras de eventos, hoteles, centros de convenciones, o emprender en el campo del diseño y producción de experiencias memorables.",
+        },
+
+        "Curso Francés hasta Nivel B2": {
+          descripcion:
+            "Este curso está diseñado para llevar al estudiante desde los niveles básicos hasta un dominio intermedio-avanzado del francés (nivel B2 según el Marco Común Europeo de Referencia). A través de un enfoque comunicativo, se desarrollan competencias en comprensión oral, expresión escrita, conversación fluida, gramática y vocabulario. Además, se integran aspectos culturales que enriquecen la experiencia de aprendizaje. Al finalizar, el estudiante estará preparado para desenvolverse en contextos académicos, laborales y sociales francófonos con seguridad y precisión lingüística.",
+        },
+
+        "Curso de Inglés C1": {
+          descripcion:
+            "Este curso avanzado está dirigido a estudiantes que desean alcanzar un nivel C1 en inglés, lo cual implica una competencia lingüística cercana al nativo. Se enfoca en perfeccionar habilidades de argumentación oral y escrita, comprensión de textos complejos, pronunciación avanzada, escritura académica, y vocabulario especializado en diferentes áreas. El egresado será capaz de participar eficazmente en reuniones, conferencias, estudios universitarios y entornos profesionales donde el inglés sea el idioma principal.",
+        },
+
+        "Curso de Inglés B2": {
+          descripcion:
+            "Este curso intermedio-avanzado permite al estudiante alcanzar el nivel B2 del inglés, desarrollando fluidez en la comunicación oral y escrita, comprensión de contenidos técnicos y cotidianos, redacción estructurada, y participación en debates. Se trabaja con materiales auténticos, simulaciones de situaciones reales y ejercicios de consolidación gramatical. El estudiante podrá interactuar de manera autónoma en ambientes laborales, académicos y sociales en países angloparlantes.",
+        },
+
+        "Curso de Inglés B1": {
+          descripcion:
+            "Este curso de nivel intermedio proporciona al estudiante las herramientas necesarias para comunicarse en inglés de forma clara sobre temas familiares y de interés general. Se trabajan habilidades como la comprensión lectora, producción escrita básica, interacción conversacional y escucha activa. A lo largo del curso, se refuerzan aspectos gramaticales fundamentales y vocabulario funcional. Ideal para quienes buscan viajar, estudiar o trabajar en entornos donde se requiera un manejo intermedio del idioma.",
+        },
+
+        "Curso de Inglés A2": {
+          descripcion:
+            "Este curso está dirigido a personas con conocimientos básicos del inglés que desean avanzar en sus habilidades de comunicación cotidiana. A nivel A2, se profundiza en estructuras gramaticales simples, frases comunes, comprensión de instrucciones y redacción de mensajes cortos. El estudiante aprenderá a desenvolverse en situaciones como hacer compras, pedir comida, hablar sobre rutinas o expresar necesidades personales en inglés.",
+        },
+
+        "Curso de Inglés A1": {
+          descripcion:
+            "El curso de nivel A1 está orientado a principiantes absolutos. A través de una metodología práctica e interactiva, el estudiante aprenderá a presentarse, saludar, hablar de su entorno, números, horarios y vocabulario esencial. Se desarrollan las habilidades de comprensión auditiva, lectura básica, pronunciación inicial y construcción de frases simples. Es la puerta de entrada ideal para comenzar el dominio del idioma inglés.",
+        },
+
+        "Programa de Inglés": {
+          descripcion:
+            "El Programa de Inglés ofrece una formación integral que abarca desde el nivel A1 (principiante) hasta el nivel C1 (avanzado), permitiendo una progresión continua y estructurada. Está diseñado para desarrollar las cuatro competencias comunicativas: hablar, escuchar, leer y escribir, con enfoque en la fluidez y la comprensión cultural. A través de clases dinámicas, materiales actualizados y docentes especializados, el estudiante adquiere una preparación sólida para exámenes internacionales, el ámbito académico o profesional.",
+        },
+        "Técnico Laboral en Agente Turístico": {
+          descripcion:
+            "Este programa capacita al estudiante en la planificación, promoción y ejecución de servicios turísticos, con énfasis en la atención al cliente, conocimiento de destinos nacionales e internacionales, normativas turísticas y manejo de herramientas digitales para el sector. El egresado podrá desempeñarse en agencias de viajes, hoteles, aerolíneas y entidades dedicadas al turismo, siendo un puente entre el viajero y la experiencia turística de calidad.",
+        },
+
+        "Técnico Laboral de Asesor de Call Center y Servicio al Cliente": {
+          descripcion:
+            "Forma profesionales con competencias en atención telefónica, gestión de clientes, resolución de conflictos y uso de software CRM (Customer Relationship Management). El estudiante desarrollará habilidades comunicativas, empatía y técnicas de servicio que le permitirán desempeñarse eficazmente en centros de contacto, servicios postventa, soporte técnico y áreas de atención en múltiples sectores económicos.",
+        },
+
+        "Técnico Laboral en Asistente en Logística de Centros de Distribución":
+          {
+            descripcion:
+              "Este programa brinda formación en procesos logísticos asociados al almacenamiento, transporte, inventario, recepción y despacho de mercancías. El estudiante aprenderá a operar herramientas tecnológicas, organizar espacios físicos y cumplir normas de seguridad y eficiencia operativa. Está enfocado en preparar talento humano para apoyar la cadena de suministro en empresas de comercio, industria o distribución.",
+          },
+
+        "Técnico Laboral en Asistente en Mercadeo": {
+          descripcion:
+            "Capacita al estudiante en técnicas de promoción, ventas, análisis de mercado, estrategias de fidelización y comunicación comercial. Se enfoca en el uso de herramientas digitales y tradicionales para apoyar campañas, realizar estudios de mercado y fortalecer la presencia de marcas. El egresado estará preparado para trabajar en departamentos comerciales, agencias de publicidad y empresas del sector retail o servicios.",
+        },
+
+        "Técnico Laboral en Auxiliar en Enfermería": {
+          descripcion:
+            "Forma profesionales capacitados para brindar atención básica integral a pacientes en diferentes niveles de complejidad, bajo supervisión del personal de salud. El estudiante aprenderá a realizar procedimientos clínicos, apoyar en actividades asistenciales, promover hábitos saludables y proporcionar acompañamiento humanizado en instituciones hospitalarias, clínicas y centros de salud, siguiendo normativas éticas y legales.",
+        },
+
+        "Técnico Laboral en Auxiliar de Tanatopraxia": {
+          descripcion:
+            "Capacita al estudiante en técnicas de conservación y preparación estética de cadáveres, atención a familias en duelo y manejo de procesos legales relacionados con el servicio funerario. Se enfoca en la práctica responsable de la tanatopraxia, el respeto por la dignidad humana, la bioseguridad y los procedimientos técnico-científicos requeridos para ejercer en funerarias, morgues e instituciones afines.",
+        },
+
+        "Técnico Laboral en Atención Integral al Adulto Mayor": {
+          descripcion:
+            "Este programa forma talento humano para brindar atención física, emocional y social a personas mayores, fomentando la autonomía, la calidad de vida y el envejecimiento saludable. El estudiante aprenderá sobre patologías comunes en la vejez, cuidado paliativo, recreación terapéutica y trabajo interdisciplinario con profesionales de la salud y la familia, aplicando principios de ética, paciencia y empatía.",
+        },
+
+        "Técnico Laboral en Auxiliar en Administrativo en Salud": {
+          descripcion:
+            "Prepara al estudiante para apoyar procesos administrativos en instituciones del sector salud, como la gestión de historias clínicas, agendamiento, admisiones, facturación y atención al usuario. Se fortalece en competencias de comunicación, manejo de software institucional, normatividad en salud y relaciones interpersonales, fundamentales para una atención eficaz y humanizada en IPS, EPS y clínicas.",
+        },
+
+        "Técnico Laboral en Auxiliar en Salud Pública": {
+          descripcion:
+            "Forma técnicos orientados a promover la salud y prevenir enfermedades mediante acciones comunitarias, visitas domiciliarias, programas de vacunación, educación en salud y campañas preventivas. El egresado podrá trabajar en proyectos de intervención comunitaria, articulado con entes territoriales, EPS o centros de atención primaria, aplicando criterios epidemiológicos y normativos.",
+        },
+
+        "Técnico Laboral en Auxiliar en Servicios Farmacéuticos": {
+          descripcion:
+            "Capacita al estudiante para apoyar en la dispensación, almacenamiento, inventario y control de medicamentos y productos farmacéuticos, cumpliendo normativas del Ministerio de Salud. El egresado estará en capacidad de atender al público, asesorar sobre el uso adecuado de medicamentos y colaborar en procesos administrativos en droguerías, farmacias hospitalarias y establecimientos farmacéuticos.",
+        },
+
+        "Técnico Laboral en Auxiliar en Salud Oral": {
+          descripcion:
+            "Forma técnicos en apoyo a los profesionales de odontología en procedimientos clínicos y administrativos. Se instruye en técnicas de higiene oral, asistencia en tratamientos, desinfección de instrumental, toma de impresiones y educación al paciente. El egresado podrá desempeñarse en consultorios odontológicos, clínicas dentales o programas de salud escolar, garantizando buenas prácticas de bioseguridad.",
+        },
+        "Técnico Laboral en Auxiliar de Desarrollo de Realidad Aumentada 3D": {
+          descripcion:
+            "Este programa capacita a los estudiantes en el diseño y desarrollo de experiencias interactivas utilizando tecnologías de realidad aumentada en entornos tridimensionales. Se abordan fundamentos de programación, modelado 3D, motores gráficos y plataformas móviles, permitiendo la creación de soluciones innovadoras para educación, entretenimiento, publicidad o arquitectura. El egresado podrá apoyar equipos creativos y técnicos en empresas de base tecnológica.",
+        },
+
+        "Técnico Laboral en Auxiliar de Desarrollo de Videojuegos": {
+          descripcion:
+            "Forma técnicos con competencias en diseño, narrativa, lógica de programación y motores de videojuegos como Unity o Unreal Engine. El estudiante desarrollará habilidades en modelado de personajes, animación, mecánicas de juego y pruebas de experiencia de usuario. Estará en capacidad de apoyar equipos de desarrollo en estudios independientes o grandes desarrolladoras, aportando creatividad y técnica al proceso de creación de videojuegos multiplataforma.",
+        },
+
+        "Técnico Laboral en Auxiliar de Desarrollo de Aplicaciones Móviles": {
+          descripcion:
+            "Este programa enseña al estudiante los principios de diseño, programación y prueba de aplicaciones móviles para Android e iOS. Se capacita en lenguajes como Java, Kotlin o Swift, así como en el uso de entornos de desarrollo integrados (IDE) y bases de datos móviles. El egresado podrá integrarse en equipos de desarrollo móvil, participar en la creación de aplicaciones funcionales e innovadoras, y responder a las necesidades del mercado digital.",
+        },
+
+        "Técnico Laboral en Auxiliar de Desarrollo Web": {
+          descripcion:
+            "Prepara al estudiante en el diseño, desarrollo y mantenimiento de sitios web funcionales y responsivos. Se instruye en HTML, CSS, JavaScript y frameworks como Bootstrap, así como en herramientas de gestión de contenidos (CMS) y nociones de backend. El egresado podrá colaborar en la creación de páginas web institucionales, tiendas virtuales o portales interactivos, aportando a la presencia digital de empresas y proyectos.",
+        },
+
+        "Técnico Laboral en Instalador de Redes de Telecomunicaciones": {
+          descripcion:
+            "Capacita en la instalación, configuración y mantenimiento de redes de telecomunicaciones, tanto cableadas como inalámbricas. El programa cubre protocolos de red, cableado estructurado, dispositivos de interconexión y pruebas de conectividad. El egresado podrá trabajar en empresas de telecomunicaciones, soporte técnico o servicios de instalación, asegurando una conectividad eficiente y segura en diversos entornos.",
+        },
+
+        "Técnico Laboral en Asistente en Electrónica Digital y Telecomunicaciones":
+          {
+            descripcion:
+              "Este programa forma en los principios de la electrónica digital, componentes electrónicos, sistemas de transmisión y redes de telecomunicaciones. El estudiante aprenderá a ensamblar, diagnosticar y reparar circuitos, así como a comprender arquitecturas electrónicas aplicadas a la comunicación. El egresado podrá desempeñarse en mantenimiento electrónico, soporte de telecomunicaciones y asistencia en procesos técnicos.",
+          },
+
+        "Técnico Laboral en Asistente en Análisis y Desarrollo de Software": {
+          descripcion:
+            "Prepara a los estudiantes en las bases de la ingeniería de software, lógica de programación, estructuras de datos y metodologías ágiles. Se capacita en lenguajes como Java, Python, PHP o C#, así como en el diseño de bases de datos y modelado de sistemas. El egresado estará preparado para apoyar a equipos de desarrollo en la creación de soluciones informáticas robustas y adaptadas a los requerimientos del usuario.",
+        },
+
+        "Técnico Laboral en Ensamble y Mantenimiento de Equipos de Cómputo": {
+          descripcion:
+            "Capacita al estudiante en el diagnóstico, reparación y mantenimiento preventivo/correctivo de equipos de cómputo y periféricos. Se abordan temas como hardware, sistemas operativos, configuración de software, instalación de drivers y seguridad informática. El egresado podrá desempeñarse en departamentos de soporte técnico, centros de reparación o como técnico independiente, garantizando el correcto funcionamiento de sistemas informáticos.",
+        },
+      };
+
+      // Mostrar información del programa si está en la URL
+      if (programaParam && programas[programaParam]) {
+        document.getElementById("programa-seleccionado").value = programaParam;
+        document.getElementById("programa-titulo").textContent = programaParam;
+        document.getElementById("programa-descripcion").textContent =
+          programas[programaParam].descripcion;
+      } else {
+        document.getElementById("programa-info").style.display = "none";
+      }
+    </script>
+  </body>
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>
+  emailjs.init("aySa818e1FIkkADp7");
+
+  function enviarFormulario(event) {
+    event.preventDefault(); // Detiene envío por ahora
+
+    const btn = document.getElementById("button");
+    btn.value = "Enviando...";
+
+    const form = document.getElementById("form");
+
+    // Enviar correo
+    emailjs.sendForm("default_service", "template_q7iyf5a", form)
+      .then(() => {
+        btn.value = "Inscribete";
+        alert("Correo enviado correctamente");
+        form.submit(); // <-- AHORA SÍ ENVÍA A inscripción.php
+      })
+      .catch((err) => {
+        btn.value = "Inscribete";
+        alert("Error al enviar correo: " + JSON.stringify(err));
+        form.submit(); // <-- Aún así, enviar a inscripción.php
+      });
+
+    return false; // Previene doble envío
+  }
+</script>
+</html>

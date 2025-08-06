@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mágnum Escuela Tecnica</title>
+    <link rel="icon" type="image/png" href="../img/principal/icono.png" />
+    <link rel="stylesheet" href="../style/style1.css" />
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <img src="../img/principal/login.png" alt="fondo_login" />
+
+    <header>
+      <div class="magnum-container">
+        <img src="../img/principal/magnum.png" alt="magnum Logo" />
+      </div>
+      <nav class="navigation">
+        <a href="../index/contactanos.html">Contactanos</a>
+        <button class="btnLogin-popup">Acceso</button>
+      </nav>
+    </header>
+
+    <div class="wrapper">
+      <span class="icon-close"> <ion-icon name="close"></ion-icon> </span>
+
+      <!-- Formulario de Login -->
+      <div class="form-box login">
+        <h2>Acceso</h2>
+        <form action="Login.php" method="POST">
+          <div class="input-box">
+            <input
+              type="text"
+              name="user_name"
+              placeholder="user_name"
+              required
+            />
+            <i class="bx bxs-user"></i>
+          </div>
+          <div class="input-box">
+            <input
+              type="password"
+              name="password"
+              placeholder="password"
+              required
+            />
+            <i class="bx bxs-lock-alt"></i>
+          </div>
+          <div class="remember-forgot">
+            <!-- <a href="#" class="forgot-link">¿Olvidaste tu contraseña?</a>-->
+          </div>
+
+          <button type="submit" name="login" class="btn">Acceso</button>
+
+          <div class="login-register">
+            <p>
+              ¿No tienes una cuenta?
+              <a href="#" class="register-link">Registrar</a>
+            </p>
+          </div>
+
+          <p>
+            &copy;2025 Angel_Torres. Todos Los Derechos Reservados.
+            <a
+              href="../index/contactanos.html"
+              style="text-decoration: none; color: #ebf0f4"
+              >Políticas de Privacidad</a
+            >
+          </p>
+        </form>
+      </div>
+
+      <!-- Formulario de Registro -->
+      <div class="form-box register">
+        <h2>Registrate</h2>
+        <form action="Login.php" method="POST" onsubmit="guardarCorreo()">
+          <div class="input-box">
+            <input
+              type="text"
+              name="email"
+              id="emailRegistro"
+              placeholder="email"
+              required
+            />
+            <i class="bx bxs-envelope"></i>
+          </div>
+          <script>
+            function guardarCorreo() {
+              const email = document.getElementById("emailRegistro").value;
+              localStorage.setItem("correoRegistrado", email);
+            }
+          </script>
+
+          <div class="input-box">
+            <input
+              type="text"
+              name="user_name"
+              placeholder="user_name"
+              required
+            />
+            <i class="bx bxs-user"></i>
+          </div>
+          <div class="input-box">
+            <input
+              type="password"
+              name="password"
+              placeholder="password"
+              required
+            />
+            <i class="bx bxs-lock-alt"></i>
+          </div>
+          <div class="remember-forgot">
+            <label>
+              <input type="checkbox" id="termsCheckbox" /> Acepto términos y
+              condiciones
+            </label>
+          </div>
+          <button
+            type="submit"
+            name="register"
+            class="btn"
+            id="registerBtn"
+            disabled
+          >
+            Registrar
+          </button>
+
+          <div class="login-register">
+            <p>
+              ¿Ya estás registrado?
+              <a href="#" class="login-link">Inicia sesión</a>
+            </p>
+          </div>
+
+          <script>
+            const checkbox = document.getElementById("termsCheckbox");
+            const button = document.getElementById("registerBtn");
+
+            checkbox.addEventListener("change", () => {
+              button.disabled = !checkbox.checked;
+            });
+          </script>
+
+          <p>
+            &copy;2025 Angel_Torres. Todos Los Derechos Reservados.
+            <a
+              href="../index/contactanos.html"
+              style="text-decoration: none; color: #eef3f7"
+              >Políticas de Privacidad</a
+            >
+          </p>
+        </form>
+      </div>
+
+      <!-- Formulario de Recuperación de Contraseña -->
+      <div class="form-box forgot">
+        <h2>Recuperar Contraseña</h2>
+        <form action="recuperar_contraseña.php" method="POST">
+          <div class="input-box">
+            <input
+              type="email"
+              name="email"
+              placeholder="Correo electrónico"
+              required
+            />
+            <i class="bx bxs-envelope"></i>
+          </div>
+          <button type="submit" name="forgot_password" class="btn">
+            Enviar enlace
+          </button>
+
+          <div class="login-register">
+            <p>
+              ¿Recuperaste tu contraseña?
+              <a href="#" class="login-link">Inicia sesión</a>
+            </p>
+          </div>
+
+          <p>
+            &copy;2025 Angel_Torres. Todos Los Derechos Reservados.
+            <a
+              href="../index/contactanos.html"
+              style="text-decoration: none; color: #eef1f4"
+              >Políticas de Privacidad</a
+            >
+          </p>
+        </form>
+      </div>
+    </div>
+
+    <script src="../script/script_1.js"></script>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+    ></script>
+  </body>
+</html>
