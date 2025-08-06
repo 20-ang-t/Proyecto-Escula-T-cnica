@@ -1,8 +1,5 @@
 
-
------
-
-# Mágnum Escuela Técnica.com - Portal de Energías Renovables
+#  Portal de Mágnum Escuela Técnica.com 
 
 ## 📝 Descripción
 
